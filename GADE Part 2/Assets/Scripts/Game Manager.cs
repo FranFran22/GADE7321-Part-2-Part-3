@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject[] positions;
+    [SerializeField] GameObject[] boardTiles;
     [SerializeField] GameObject[] goldPieces;
     [SerializeField] GameObject[] greyPieces;
+    [SerializeField] public static GameObject[] positions;
 
     enum State { goldTurn, greyTurn }
     [SerializeField] State currentState;
@@ -21,5 +22,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+
+    public void PositionManager()
+    {
+
     }
 }
