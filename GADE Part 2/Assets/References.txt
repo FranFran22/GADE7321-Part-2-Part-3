@@ -1,0 +1,6 @@
+GADE Part 2 References:
+
+> https://medium.com/@lemapp09/beginning-game-development-physics-raycast-1dfa79223f41#:~:text=Raycast%3A%20A%20powerful%20Unity%203D,AI%20vision%2C%20and%20object%20interaction.
+> https://docs.unity3d.com/ScriptReference/Physics.Raycast.html
+> https://forum.unity.com/threads/gameobject-click-detect.345431/ 
+> https://www.youtube.com/watch?v=8W-MJlgAz8U 

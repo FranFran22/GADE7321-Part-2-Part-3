@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Grey
   - Gold
+  - Tile
   layers:
   - Default
   - TransparentFX

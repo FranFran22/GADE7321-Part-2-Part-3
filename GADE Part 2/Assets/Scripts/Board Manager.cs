@@ -10,13 +10,26 @@ public class BoardManager : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
 
     void Update()
     {
-        
+        if (Raycast.hitObject.tag == "Tile")
+        {
+            tile = Raycast.hitObject;
+            Debug.Log("tile " + tile + " selected");
+        }
+
+        else
+        { 
+            if (Raycast.hitObject.tag == "Grey" || Raycast.hitObject.tag == "Gold")
+            {
+                piece = Raycast.hitObject;
+                Debug.Log("piece " + piece + " selected");
+            }
+        }
     }
 
 
