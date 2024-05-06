@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player
 {
     public Colour colour { get; set; }
     public Board board { get; set; }
@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public Player (Colour colour, Board board)
     {
         this.colour = colour;
+        this.board = board;
         activePieces = new List<Piece>();
     }
 
@@ -32,8 +33,8 @@ public class Player : MonoBehaviour
     {
         foreach (var piece in activePieces)
         {
-            //if (board.HasPiece(piece))
-                //piece.SelectAVailableSquares();
+            if (board.HasPiece(piece))
+                piece.SelectAvailableSquares();
         }
     }
 }

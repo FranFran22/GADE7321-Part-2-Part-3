@@ -13,7 +13,7 @@ public abstract class Piece : MonoBehaviour
 
     public List<Vector2Int> availableMoves;
 
-    //private IObjectTweener tweener;
+    private IObjectTweener tweener;
 
     public abstract List<Vector2Int> SelectAvailableSquares();
 
@@ -21,7 +21,7 @@ public abstract class Piece : MonoBehaviour
     private void Awake()
     {
         availableMoves = new List<Vector2Int>();
-        //tweener = GetComponent<IObjectTweener>();
+        tweener = GetComponent<IObjectTweener>();
         materialSetter = GetComponent<MaterialSetter>();
         hasMoved = false;
     }
@@ -43,7 +43,10 @@ public abstract class Piece : MonoBehaviour
 
     public virtual void MovePiece(Vector2Int coords)
     {
-
+        Vector3 targetPosition = board.CalculatePosition(coords);
+        occupiedSquare = coords;
+        hasMoved = true;
+        tweener.MoveTo(transform, targetPosition);
     }
 
     protected void TryToAddMove (Vector2Int coords)

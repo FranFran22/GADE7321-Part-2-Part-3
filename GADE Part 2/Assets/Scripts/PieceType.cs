@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum PieceType
 {
-    Mercinary, Shield, Guard, Crown
+    Mercenary, Shield, Guard, Crown
 }

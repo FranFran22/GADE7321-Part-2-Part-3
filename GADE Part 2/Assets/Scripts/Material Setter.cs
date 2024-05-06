@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MaterialSetter : MonoBehaviour
 {
-    [SerializeField] private MeshRenderer _meshRenderer;
+    private MeshRenderer _meshRenderer;
 
     private MeshRenderer meshRenderer
     {
