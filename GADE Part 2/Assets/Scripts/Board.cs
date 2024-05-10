@@ -12,10 +12,14 @@ public class Board : MonoBehaviour
     private Piece[,] grid;
     private Piece selectedPiece;
     public const int BOARD_SIZE = 8;
+
     private GameController controller;
+    private SquareSelectorCreator squareSelector;
+
 
     private void Awake()
     {
+        squareSelector = GetComponent<SquareSelectorCreator>();
         CreateGrid();
     }
 
@@ -75,6 +79,9 @@ public class Board : MonoBehaviour
     {
         UpdateBoardOnMove(coords, piece.occupiedSquare, piece, null);
         selectedPiece.MovePiece(coords);
+
+        Debug.Log("Piece moved, square occuppied");
+
         DeselectPiece();
         EndTurn();
     }
@@ -93,14 +100,31 @@ public class Board : MonoBehaviour
     private void SelectPiece(Piece piece)
     {
         selectedPiece = piece;
+        List<Vector2Int> selection = selectedPiece.availableMoves;
+        ShowSelectionSquares(selection);
+    }
+
+    private void ShowSelectionSquares(List<Vector2Int> selection)
+    {
+        Dictionary<Vector3, bool> squaresData = new Dictionary<Vector3, bool>();
+
+        for (int i = 0; i < selection.Count; i++)
+        {
+            Vector3 position = CalculatePosition(selection[i]);
+            bool isSquareFree = GetPieceOnSquare(selection[i]) == null;
+            squaresData.Add(position, isSquareFree);
+        }
+
+        squareSelector.ShowSelection(squaresData);
     }
 
     private void DeselectPiece()
     {
         selectedPiece = null;
+        squareSelector.ClearSelection();
     }
 
-    private Piece GetPieceOnSquare(Vector2Int coords)
+    public Piece GetPieceOnSquare(Vector2Int coords)
     {
         if (CheckIfCoordsAreOnBoard(coords))
             return grid[coords.x, coords.y];
@@ -110,13 +134,18 @@ public class Board : MonoBehaviour
 
     private Vector2Int CalculateCoordsFromPosition(Vector3 inputPosition)
     {
-        int x = Mathf.FloorToInt(transform.InverseTransformPoint(inputPosition).x / squareSize) + (BOARD_SIZE / 2);
-        int y = Mathf.FloorToInt(transform.InverseTransformPoint(inputPosition).z / squareSize) + (BOARD_SIZE / 2);
+        //int x = Mathf.FloorToInt(transform.InverseTransformPoint(inputPosition).x / squareSize) + (BOARD_SIZE / 2);
+        //int y = Mathf.FloorToInt(transform.InverseTransformPoint(inputPosition).z / squareSize) + (BOARD_SIZE / 2); [original code]
+
+        int x = Mathf.FloorToInt(inputPosition.x / squareSize) + (BOARD_SIZE / 2);
+        int y = Mathf.FloorToInt(inputPosition.z / squareSize) + (BOARD_SIZE / 2); //changed (& fixed) code
+
+        Debug.Log("Coords Calculated: " + Convert.ToString(x) + ", " + Convert.ToString(y));
 
         return new Vector2Int(x, y);
     }
 
-    private bool CheckIfCoordsAreOnBoard(Vector2Int coords)
+    public bool CheckIfCoordsAreOnBoard(Vector2Int coords)
     {
         if (coords.x < 0 || coords.y < 0 || coords.x >= BOARD_SIZE || coords.y >= BOARD_SIZE)
             return false;

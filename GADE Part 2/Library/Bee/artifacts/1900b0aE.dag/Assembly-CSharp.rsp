@@ -379,7 +379,7 @@
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/Raycast.cs"
 "Assets/Scripts/Shield.cs"
-"Assets/Scripts/SquareSelectorCreator.cs"
+"Assets/Scripts/Square Selector Creator.cs"
 -langversion:9.0
 
 /deterministic
