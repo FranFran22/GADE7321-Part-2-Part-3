@@ -378,6 +378,7 @@
 "Assets/Scripts/PieceType.cs"
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/Raycast.cs"
+"Assets/Scripts/Scene Changer.cs"
 "Assets/Scripts/Shield.cs"
 "Assets/Scripts/Square Selector Creator.cs"
 -langversion:9.0
