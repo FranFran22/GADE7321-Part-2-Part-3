@@ -333,7 +333,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 102,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/UnityEngine.TestRunner.AdditionalFile.txt"
@@ -2375,7 +2375,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 50378,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.AdditionalFile.txt"
@@ -3040,7 +3040,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 95697,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/UnityEditor.TestRunner.AdditionalFile.txt"
@@ -3716,7 +3716,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 152204,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.AdditionalFile.txt"
@@ -4298,7 +4298,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 194906,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.EditorCoroutines.Editor.AdditionalFile.txt"
@@ -4833,7 +4833,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 235145,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.Performance.Profile-Analyzer.Editor.AdditionalFile.txt"
@@ -5381,7 +5381,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 278351,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.PlasticSCM.Editor.AdditionalFile.txt"
@@ -6168,7 +6168,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 348075,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.Rider.Editor.AdditionalFile.txt"
@@ -6697,7 +6697,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 389735,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.Settings.Editor.AdditionalFile.txt"
@@ -7223,7 +7223,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 430684,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.AdditionalFile.txt"
@@ -7751,7 +7751,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 472464,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.AdditionalFile.txt"
@@ -8268,7 +8268,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 512993,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.TextMeshPro.AdditionalFile.txt"
@@ -8825,7 +8825,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 556550,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.Timeline.AdditionalFile.txt"
@@ -9396,7 +9396,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 601190,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.VSCode.Editor.AdditionalFile.txt"
@@ -9917,7 +9917,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 641759,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.VisualScripting.Core.AdditionalFile.txt"
@@ -10842,7 +10842,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 734032,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.VisualStudio.Editor.AdditionalFile.txt"
@@ -11373,7 +11373,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 775699,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.CollabProxy.Editor.AdditionalFile.txt"
@@ -11909,7 +11909,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 815802,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.TestTools.CodeCoverage.Editor.AdditionalFile.txt"
@@ -12513,7 +12513,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 859456,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.TextMeshPro.Editor.AdditionalFile.txt"
@@ -13096,7 +13096,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 903903,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.Timeline.Editor.AdditionalFile.txt"
@@ -13902,7 +13902,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 968106,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.VisualScripting.Core.Editor.AdditionalFile.txt"
@@ -14907,7 +14907,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1065090,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.VisualScripting.Flow.AdditionalFile.txt"
@@ -15811,7 +15811,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1152988,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.VisualScripting.Flow.Editor.AdditionalFile.txt"
@@ -16540,7 +16540,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1213607,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.VisualScripting.State.AdditionalFile.txt"
@@ -17077,7 +17077,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1255611,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.VisualScripting.SettingsProvider.Editor.AdditionalFile.txt"
@@ -17655,7 +17655,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1297471,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.VisualScripting.State.Editor.AdditionalFile.txt"
@@ -18256,7 +18256,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1346267,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Unity.VisualScripting.Shared.Editor.AdditionalFile.txt"
@@ -18812,7 +18812,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1387287,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "G:\\Vega 2024\\Game Development\\",
+      "PayloadDebugContentSnippet": "D:\\Vega 2024\\Game Development\\",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.AdditionalFile.txt"
@@ -18824,7 +18824,7 @@
       "DisplayName": "Writing Assembly-CSharp.rsp",
       "ActionType": "WriteFile",
       "PayloadOffset": 1387437,
-      "PayloadLength": 31259,
+      "PayloadLength": 31296,
       "PayloadDebugContentSnippet": "-target:library\r\n-out:\"Library",
       "Inputs": [],
       "Outputs": [
@@ -19067,6 +19067,7 @@
         "Library/Bee/artifacts/1900b0aE.dag/Unity.VSCode.Editor.ref.dll",
         "Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll",
         "Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll",
+        "Assets/Scripts/AI classes/Node.cs",
         "Assets/Scripts/Board Input Handler.cs",
         "Assets/Scripts/Board.cs",
         "Assets/Scripts/BoardLayout.cs",
@@ -19325,7 +19326,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll.mvfrm.rsp",
       "DisplayName": "Writing Assembly-CSharp.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1418792,
+      "PayloadOffset": 1418829,
       "PayloadLength": 9366,
       "PayloadDebugContentSnippet": "Library\\Bee\\artifacts\\mvdfrm\\U",
       "Inputs": [],
@@ -20409,7 +20410,7 @@
     {
       "Annotation": "BuildPlayerDataGenerator Library/BuildPlayerData/Editor/TypeDb-All.json",
       "DisplayName": "BuildPlayerDataGenerator TypeDb-All",
-      "Action": "\"C:/Program Files/Unity 2022.2.0f1/Editor/Data\\Tools\\netcorerun\\netcorerun.exe\" \"C:/Program Files/Unity 2022.2.0f1/Editor/Data/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe\" -a=\"G:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies/Assembly-CSharp.dll\" -a=\"G:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies/Unity.TextMeshPro.dll\" -a=\"G:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies/Unity.Timeline.dll\" -a=\"G:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies/Unity.VisualScripting.Core.dll\" -a=\"G:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll\" -a=\"G:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies/Unity.VisualScripting.State.dll\" -a=\"G:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies/UnityEngine.TestRunner.dll\" -a=\"G:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies/UnityEngine.UI.dll\" -s=\"C:/Program Files/Unity 2022.2.0f1/Editor/Data/Managed/UnityEngine\" -s=\"C:/Program Files/Unity 2022.2.0f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx\" -s=\"C:/Program Files/Unity 2022.2.0f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard\" -s=\"C:/Program Files/Unity 2022.2.0f1/Editor/Data/NetStandard/Extensions/2.0.0\" -s=\"C:/Program Files/Unity 2022.2.0f1/Editor/Data/NetStandard/ref/2.1.0\" -s=\"G:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies\" -s=\"G:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Packages/com.unity.ext.nunit/net35/unity-custom\" -s=\"G:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Packages/com.unity.testtools.codecoverage/lib/ReportGenerator\" -s=\"G:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Packages/com.unity.visualscripting/Runtime/VisualScripting.Flow/Dependencies/NCalc\" -o=\"Library/BuildPlayerData/Editor\" -rn=\"\" -tn=\"TypeDb-All.json\"",
+      "Action": "\"C:/Program Files/Unity 2022.2.0f1/Editor/Data\\Tools\\netcorerun\\netcorerun.exe\" \"C:/Program Files/Unity 2022.2.0f1/Editor/Data/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe\" -a=\"D:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies/Assembly-CSharp.dll\" -a=\"D:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies/Unity.TextMeshPro.dll\" -a=\"D:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies/Unity.Timeline.dll\" -a=\"D:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies/Unity.VisualScripting.Core.dll\" -a=\"D:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll\" -a=\"D:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies/Unity.VisualScripting.State.dll\" -a=\"D:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies/UnityEngine.TestRunner.dll\" -a=\"D:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies/UnityEngine.UI.dll\" -s=\"C:/Program Files/Unity 2022.2.0f1/Editor/Data/Managed/UnityEngine\" -s=\"C:/Program Files/Unity 2022.2.0f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx\" -s=\"C:/Program Files/Unity 2022.2.0f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard\" -s=\"C:/Program Files/Unity 2022.2.0f1/Editor/Data/NetStandard/Extensions/2.0.0\" -s=\"C:/Program Files/Unity 2022.2.0f1/Editor/Data/NetStandard/ref/2.1.0\" -s=\"D:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/ScriptAssemblies\" -s=\"D:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Packages/com.unity.ext.nunit/net35/unity-custom\" -s=\"D:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Packages/com.unity.testtools.codecoverage/lib/ReportGenerator\" -s=\"D:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Packages/com.unity.visualscripting/Runtime/VisualScripting.Flow/Dependencies/NCalc\" -o=\"Library/BuildPlayerData/Editor\" -rn=\"\" -tn=\"TypeDb-All.json\"",
       "Inputs": [
         "C:/Program Files/Unity 2022.2.0f1/Editor/Data/Tools/netcorerun/netcorerun.exe",
         "C:/Program Files/Unity 2022.2.0f1/Editor/Data/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe",
@@ -20692,6 +20693,6 @@
   "SharedResources": [],
   "Scanners": [],
   "Identifier": "Library/Bee/1900b0aE.dag.json",
-  "PayloadsFile": "G:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/Bee/1900b0aE.dag.payloads",
+  "PayloadsFile": "D:/Vega 2024/Game Development/GADE7321-Part-2-Part-3/GADE Part 2/Library/Bee/1900b0aE.dag.payloads",
   "RelativePathToRoot": "../.."
 }
