@@ -7,7 +7,7 @@ public class Node : MonoBehaviour
     // nodes to be used in the MCST class
 
     private int nodeNum;
-    private List<Vector2Int> calculatedMoves();
+    private List<Vector2Int> calculatedMoves;
     private Node parentNode;
 
 
