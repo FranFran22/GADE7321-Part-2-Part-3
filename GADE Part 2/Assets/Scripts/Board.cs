@@ -10,7 +10,7 @@ public class Board : MonoBehaviour
     [SerializeField] private float squareSize;
 
     private Piece[,] grid;
-    private Piece selectedPiece;
+    public Piece selectedPiece;
     public const int BOARD_SIZE = 8;
 
     private GameController controller;
@@ -134,11 +134,8 @@ public class Board : MonoBehaviour
 
     private Vector2Int CalculateCoordsFromPosition(Vector3 inputPosition)
     {
-        //int x = Mathf.FloorToInt(transform.InverseTransformPoint(inputPosition).x / squareSize) + (BOARD_SIZE / 2);
-        //int y = Mathf.FloorToInt(transform.InverseTransformPoint(inputPosition).z / squareSize) + (BOARD_SIZE / 2); [original code]
-
         int x = Mathf.FloorToInt(inputPosition.x / squareSize) + (BOARD_SIZE / 2);
-        int y = Mathf.FloorToInt(inputPosition.z / squareSize) + (BOARD_SIZE / 2); //changed (& fixed) code
+        int y = Mathf.FloorToInt(inputPosition.z / squareSize) + (BOARD_SIZE / 2);
 
         Debug.Log("Coords Calculated: " + Convert.ToString(x) + ", " + Convert.ToString(y));
 
@@ -157,5 +154,50 @@ public class Board : MonoBehaviour
     {
         if (CheckIfCoordsAreOnBoard(coords))
             grid[coords.x, coords.y] = piece;
+    }
+
+    public void CheckForCapture(Vector2Int coords) //make neater 
+    {
+        // check if the piece is directly behind another piece
+        Colour pColour = selectedPiece.colour;
+
+        Vector2Int targetPiece1 = new Vector2Int(0,0);
+        Vector2Int targetPiece2 = new Vector2Int(0, 0);
+
+        if (pColour == Colour.Gold)
+        {
+            targetPiece1 = new Vector2Int(coords.x, coords.y + 1);
+            targetPiece2 = new Vector2Int(coords.x - 1, coords.y);
+        }
+
+        else if (pColour == Colour.Grey)
+        {
+            targetPiece1 = new Vector2Int(coords.x, coords.y - 1);
+            targetPiece2 = new Vector2Int(coords.x + 1, coords.y);
+        }
+
+
+        // if there is a piece to available for capture, delete it from the board
+        if (GetPieceOnSquare(targetPiece1) != null)
+        {
+            Destroy(GetPieceOnSquare(targetPiece1));
+            grid[targetPiece1.x, targetPiece1.y] = null;
+            
+        }
+
+        if (GetPieceOnSquare(targetPiece2) != null)
+        {
+            Destroy(GetPieceOnSquare(targetPiece1));
+            grid[targetPiece2.x, targetPiece2.y] = null;
+        }
+    }
+
+    public void CapturePiece(Vector2Int xy)
+    {
+        CheckForCapture(xy); //check if there is a piece to be captured
+
+        // remove the captured piece from the board
+
+
     }
 }

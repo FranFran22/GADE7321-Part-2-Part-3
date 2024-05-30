@@ -41,15 +41,18 @@ public abstract class Piece : MonoBehaviour
         return availableMoves.Contains(coords);
     }
 
-    public virtual void MovePiece(Vector2Int coords) //not running
+    public virtual void MovePiece(Vector2Int coords)
     {
         Vector3 targetPosition = board.CalculatePosition(coords);
 
-        Debug.Log("target position calculated"); // not running
+        Debug.Log("target position calculated");
 
         occupiedSquare = coords;
         hasMoved = true;
         tweener.MoveTo(transform, targetPosition);
+
+        // call method to check if they captured a piece
+        board.CapturePiece(coords);
     }
 
     protected void TryToAddMove (Vector2Int coords)
@@ -64,4 +67,6 @@ public abstract class Piece : MonoBehaviour
         this.board = board;
         transform.position = board.CalculatePosition(coords);
     }
+
+    
 }
