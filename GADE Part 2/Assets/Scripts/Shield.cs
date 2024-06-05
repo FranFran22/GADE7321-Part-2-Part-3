@@ -49,4 +49,9 @@ public class Shield : Piece
 
         return availableMoves;
     }
+
+    public override void DestroyObj()
+    {
+        Destroy(gameObject);
+    }
 }

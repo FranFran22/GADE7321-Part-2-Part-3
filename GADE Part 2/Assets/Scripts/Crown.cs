@@ -45,4 +45,9 @@ public class Crown : Piece
 
         return availableMoves;
     }
+
+    public override void DestroyObj()
+    {
+        Destroy(gameObject);
+    }
 }

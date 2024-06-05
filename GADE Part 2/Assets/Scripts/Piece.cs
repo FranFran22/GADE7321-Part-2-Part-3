@@ -50,9 +50,6 @@ public abstract class Piece : MonoBehaviour
         occupiedSquare = coords;
         hasMoved = true;
         tweener.MoveTo(transform, targetPosition);
-
-        // call method to check if they captured a piece
-        board.CapturePiece(coords);
     }
 
     protected void TryToAddMove (Vector2Int coords)
@@ -68,5 +65,5 @@ public abstract class Piece : MonoBehaviour
         transform.position = board.CalculatePosition(coords);
     }
 
-    
+    public abstract void DestroyObj();
 }

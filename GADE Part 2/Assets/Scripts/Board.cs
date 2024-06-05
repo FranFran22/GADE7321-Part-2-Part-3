@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,12 +10,17 @@ public class Board : MonoBehaviour
     [SerializeField] private Transform bottomLeftTransform;
     [SerializeField] private float squareSize;
 
+    [SerializeField] private Piece target;
+
     private Piece[,] grid;
     public Piece selectedPiece;
     public const int BOARD_SIZE = 8;
 
     private GameController controller;
     private SquareSelectorCreator squareSelector;
+
+    private bool targetExists;
+    [SerializeField] private Colour pColour;
 
 
     private void Awake()
@@ -23,6 +29,8 @@ public class Board : MonoBehaviour
         CreateGrid();
     }
 
+
+#region METHODS
     public void SetDependancies(GameController controller)
     {
         this.controller = controller;
@@ -82,6 +90,12 @@ public class Board : MonoBehaviour
 
         Debug.Log("Piece moved, square occuppied");
 
+        if (BoardCheck(coords) == true)
+        {
+            Capture();
+            Debug.Log("Piece captured");
+        }
+             
         DeselectPiece();
         EndTurn();
     }
@@ -156,48 +170,78 @@ public class Board : MonoBehaviour
             grid[coords.x, coords.y] = piece;
     }
 
-    public void CheckForCapture(Vector2Int coords) //make neater 
+    private int ConvertCoords(double x)
     {
-        // check if the piece is directly behind another piece
-        Colour pColour = selectedPiece.colour;
+        int output = Convert.ToInt32(Math.Round(x));
 
-        Vector2Int targetPiece1 = new Vector2Int(0,0);
-        Vector2Int targetPiece2 = new Vector2Int(0, 0);
-
-        if (pColour == Colour.Gold)
-        {
-            targetPiece1 = new Vector2Int(coords.x, coords.y + 1);
-            targetPiece2 = new Vector2Int(coords.x - 1, coords.y);
-        }
-
-        else if (pColour == Colour.Grey)
-        {
-            targetPiece1 = new Vector2Int(coords.x, coords.y - 1);
-            targetPiece2 = new Vector2Int(coords.x + 1, coords.y);
-        }
-
-
-        // if there is a piece to available for capture, delete it from the board
-        if (GetPieceOnSquare(targetPiece1) != null)
-        {
-            Destroy(GetPieceOnSquare(targetPiece1));
-            grid[targetPiece1.x, targetPiece1.y] = null;
-            
-        }
-
-        if (GetPieceOnSquare(targetPiece2) != null)
-        {
-            Destroy(GetPieceOnSquare(targetPiece1));
-            grid[targetPiece2.x, targetPiece2.y] = null;
-        }
+        if (output <= BOARD_SIZE && output >= 0)
+            return output;
+        else return 0;
     }
 
-    public void CapturePiece(Vector2Int xy)
+    private bool BoardCheck(Vector2Int coords)
     {
-        CheckForCapture(xy); //check if there is a piece to be captured
+        Piece temp = GetPieceOnSquare(coords);
+        pColour = temp.colour;
 
-        // remove the captured piece from the board
+        //coordinate conversions
+        Piece goldTarget1 = grid[ConvertCoords(coords.x), ConvertCoords(coords.y - 1)]; 
+        Piece goldTarget2 = grid[ConvertCoords(coords.x + 1), ConvertCoords(coords.y)];
+        Piece greyTarget1 = grid[ConvertCoords(coords.x), ConvertCoords(coords.y + 1)];
+        Piece greyTarget2 = grid[ConvertCoords(coords.x - 1), ConvertCoords(coords.y)];
 
+        switch (pColour)
+        {
+            case Colour.Gold:
+                if (goldTarget1 != null)
+                {
+                    targetExists = true;
+                    target = goldTarget1;
+                }
 
+                if (goldTarget2 != null)
+                {
+                    targetExists = true;
+                    target = goldTarget2;
+                }
+
+                else if (goldTarget1 == null && goldTarget2 == null)
+                    targetExists = false;
+
+                break;
+
+            case Colour.Grey:
+                if (greyTarget1 != null)
+                {
+                    targetExists = true;
+                    target = greyTarget1;
+                }
+
+                if (greyTarget2 != null)
+                {
+                    targetExists = true;
+                    target = greyTarget2;
+                }
+
+                else if (greyTarget1 == null && greyTarget2 == null)
+                    targetExists = false;
+
+                break;
+        }
+
+        Debug.Log("Target exists: " + Convert.ToString(targetExists));
+        return targetExists;
     }
+
+
+    public void Capture()
+    {
+        if (grid[target.occupiedSquare.x, target.occupiedSquare.y].colour != pColour)
+        {
+            grid[target.occupiedSquare.x, target.occupiedSquare.y] = null;
+            target.DestroyObj();
+            Debug.Log("Piece destroyed");
+        }
+    }
+    #endregion
 }
