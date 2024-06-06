@@ -12,7 +12,7 @@ public class Board : MonoBehaviour
     [SerializeField] private Colour pColour;
     [SerializeField] private Piece target;
 
-    public Piece[,] grid;
+    public static Piece[,] grid;
     public Piece selectedPiece;
     public const int BOARD_SIZE = 8;
     private GameController controller;
@@ -43,7 +43,7 @@ public class Board : MonoBehaviour
         grid = new Piece[BOARD_SIZE, BOARD_SIZE];
     }
 
-    public bool HasPiece(Piece piece)
+    public static bool HasPiece(Piece piece)
     {
         for (int i = 0; i < BOARD_SIZE; i++)
         {

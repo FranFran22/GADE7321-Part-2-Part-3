@@ -5,4 +5,7 @@ GADE Part 2 References:
 > https://forum.unity.com/threads/gameobject-click-detect.345431/ 
 > https://www.youtube.com/watch?v=8W-MJlgAz8U 
 > https://www.youtube.com/watch?v=cWgo0ak_8sE&
-> 
+
+
+GADE Part 3 (POE) References:
+> https://ai-boson.github.io/mcts/
