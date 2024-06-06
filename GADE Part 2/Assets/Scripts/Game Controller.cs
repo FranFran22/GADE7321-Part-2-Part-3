@@ -4,18 +4,23 @@ using UnityEditor;
 using UnityEngine;
 using System;
 using UnityEngine.UIElements;
+using TMPro;
 
 
-//[RequiresComponent(typeof(PieceCreator))]
 public class GameController : MonoBehaviour
 {
     [SerializeField] private BoardLayout startingLayout1;
     [SerializeField] private Board board;
+    [SerializeField] private Material gold;
+    [SerializeField] private Material grey;
+    [SerializeField] private TMP_Text victoryText;
+    [SerializeField] private GameObject victoryCanvas;
 
     private PieceCreator pieceCreator;
     private Player goldPlayer;
     private Player greyPlayer;
     private Player activePlayer;
+    private bool victory, goldWin, greyWin, goldCrownExists, greyCrownExists;
 
     private void Awake()
     {
@@ -28,10 +33,9 @@ public class GameController : MonoBehaviour
         StartGame();
     }
 
-
     void Update()
     {
-        
+        Victory();
     }
 
     private void StartGame()
@@ -100,5 +104,47 @@ public class GameController : MonoBehaviour
     private Player GetOpponentToPlayer(Player player)
     {
         return player == goldPlayer ? greyPlayer : goldPlayer;
+    }
+
+    public void WinConditions() //working on this
+    {
+        // need to create a scenario that can turn the "crowns exist" bold to "false" (perma true atm)
+
+        GameObject[] crowns = GameObject.FindGameObjectsWithTag("Crown");
+
+        foreach (GameObject obj in crowns)
+        {
+            if (obj.GetComponent<Renderer>().material.name == "Gold (Instance)")
+                goldCrownExists = true;
+              
+            if (obj.GetComponent<Renderer>().material.name == "Grey (Instance)")
+                greyCrownExists = true;
+        }
+
+        Debug.Log("grey: " + greyCrownExists);
+        Debug.Log("gold: " + goldCrownExists);
+
+        //check if crowns are still on board
+        if (goldCrownExists == false)
+            greyWin = true;
+
+        if (greyCrownExists == false)
+            goldWin = true;
+    }
+
+    private void Victory()
+    {
+        if (victory == true)
+        {
+            victoryCanvas.SetActive(true);
+
+            if (goldWin == true)
+                victoryText.text = "Gold wins";
+
+            if (greyWin == true)
+                victoryText.text = "Grey wins";
+        }
+
+        else victoryCanvas.SetActive(false);
     }
 }

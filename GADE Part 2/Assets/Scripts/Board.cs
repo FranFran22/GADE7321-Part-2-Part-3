@@ -9,18 +9,15 @@ public class Board : MonoBehaviour
 {
     [SerializeField] private Transform bottomLeftTransform;
     [SerializeField] private float squareSize;
-
+    [SerializeField] private Colour pColour;
     [SerializeField] private Piece target;
 
-    private Piece[,] grid;
+    public Piece[,] grid;
     public Piece selectedPiece;
     public const int BOARD_SIZE = 8;
-
     private GameController controller;
     private SquareSelectorCreator squareSelector;
-
     private bool targetExists;
-    [SerializeField] private Colour pColour;
 
 
     private void Awake()
@@ -95,6 +92,8 @@ public class Board : MonoBehaviour
             Capture();
             Debug.Log("Piece captured");
         }
+
+        controller.WinConditions();
              
         DeselectPiece();
         EndTurn();
@@ -174,7 +173,7 @@ public class Board : MonoBehaviour
     {
         int output = Convert.ToInt32(Math.Round(x));
 
-        if (output <= BOARD_SIZE && output >= 0)
+        if (output < BOARD_SIZE && output >= 0)
             return output;
         else return 0;
     }
@@ -232,7 +231,6 @@ public class Board : MonoBehaviour
         Debug.Log("Target exists: " + Convert.ToString(targetExists));
         return targetExists;
     }
-
 
     public void Capture()
     {
