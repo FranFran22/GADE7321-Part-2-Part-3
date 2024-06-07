@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class MCST : MonoBehaviour
 {
@@ -25,30 +26,12 @@ public class MCST : MonoBehaviour
     private double C = Math.Sqrt(2); //exploration parameter
     private int parentSims; //simulations for the parent node
 
-    private Node parent;
-    private Node child;
-    List<Vector2Int> moves = new List<Vector2Int>();
-    private Piece[,] gameState;
-    private int numOfVisits;
-    Dictionary<int, int> results = new Dictionary<int, int>();
     private Vector2Int action;
+    private Node childNode;
+    private Piece[,] nextState;
+    private Node[] children;
+    private Piece[,] gameState;
 
-    public List<Node> nodes = new List<Node>(); // stores all the generated nodes
-
-
-    public MCST(Piece[,] state, Node parentN)
-    {
-        gameState = state;
-        parent = parentN;
-        //parent action --> the action that the parent carried out
-        //actions = null; // --> possible actions from current node
-        numOfVisits = 0;
-
-        results[1] = 0;
-        results[-1] = 0;
-
-        //untriedActions = null;
-    }
 
     void Start()
     {
@@ -61,60 +44,89 @@ public class MCST : MonoBehaviour
         gameState = Board.grid;
     }
 
+
     #region Methods
     public double SelectionFunction(int w, int n, double c, int t)
     {
-        double utility = (w / n) + c * Math.Sqrt(t) / n;
-
-        return utility;
-    }
-
-    private List<Vector2Int> possibleActions()
-    {
-        foreach (Piece p in gameState)
-        {
-            if (Board.HasPiece(p))
-            {
-                List<Vector2Int> temp = p.SelectAvailableSquares();
-                moves.AddRange(temp);
-            }
-        }
-
-        return moves;
-    }
-
-    private int WinLoss()
-    {
-        int wins = results[1];
-        int losses = results[-1];
-
-        return (wins - losses);
+        double value = (w / n) + c * Math.Sqrt(t) / n;
+        return value;
     }
 
     private int CalculateVisits(Node node1)
     {
-        return node1.timesVisited;
+        return node1.numOfVisits;
     }
 
-    private Node Expand()
+    private Node Expand(Node current)
     {
-        //int range = moves.GetRange();
-        //int rnd = UnityEngine.Random.Range(0, range - 1);
+        //pick a random piece on the board
+        int i = UnityEngine.Random.Range(0, 7);
+        int j = UnityEngine.Random.Range(0, 7);
 
-        //action = moves;
+        Piece randomPiece = gameState[i,j];
 
-        return null;
+        while (gameState[i,j] == null)
+        {
+            i = UnityEngine.Random.Range(0, 7);
+            j = UnityEngine.Random.Range(0, 7);
+
+            randomPiece = gameState[i, j];
+        }
+
+        //calculate its possible moves
+        List<Vector2Int> calculatedMoves = randomPiece.SelectAvailableSquares();
+
+        int x = UnityEngine.Random.Range(0, calculatedMoves.Count - 1);
+        action = calculatedMoves[x];
+
+        //change the game state
+        //nextState = change grid[]
+
+        childNode = new Node(action, current, nextState);
+
+        children.Append(childNode);
+        return childNode;
     }
 
     private bool isNodeTerminal()
     {
-        // check if the current node is terminal
-        return false;
+        return isGameOver();
     }
 
     private void SimulationRollout()
     {
 
+    }
+
+    private void Backpropagation()
+    {
+
+    }
+
+    private Piece[,] ChangedState()
+    {
+        return null;
+    }
+
+    private bool isGameOver()
+    {
+        // check if the current node is terminal
+        bool value = false;
+
+        foreach (Piece piece in gameState)
+        {
+            if (Board.HasPiece(piece))
+            {
+                List<Vector2Int> temp = piece.SelectAvailableSquares();
+
+                if (temp != null)
+                    value = false;
+
+                else value = true;
+            }
+        }
+
+        return value;
     }
 
     #endregion
