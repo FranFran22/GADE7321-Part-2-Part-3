@@ -26,13 +26,15 @@ public class MCST : MonoBehaviour
     private int parentSims; //simulations for the parent node
 
     private Node parent;
-    //private List<Vector2Int> possibleActions = new List<Vector2Int>(); //to hold actions
+    private Node child;
+    List<Vector2Int> moves = new List<Vector2Int>();
     private Piece[,] gameState;
     private int numOfVisits;
     Dictionary<int, int> results = new Dictionary<int, int>();
     private Vector2Int action;
 
     public List<Node> nodes = new List<Node>(); // stores all the generated nodes
+
 
     public MCST(Piece[,] state, Node parentN)
     {
@@ -59,8 +61,8 @@ public class MCST : MonoBehaviour
         gameState = Board.grid;
     }
 
-
-    public double UtilityFunction(int w, int n, double c, int t)
+    #region Methods
+    public double SelectionFunction(int w, int n, double c, int t)
     {
         double utility = (w / n) + c * Math.Sqrt(t) / n;
 
@@ -69,8 +71,6 @@ public class MCST : MonoBehaviour
 
     private List<Vector2Int> possibleActions()
     {
-        List<Vector2Int> moves = new List<Vector2Int>();
-
         foreach (Piece p in gameState)
         {
             if (Board.HasPiece(p))
@@ -91,10 +91,31 @@ public class MCST : MonoBehaviour
         return (wins - losses);
     }
 
+    private int CalculateVisits(Node node1)
+    {
+        return node1.timesVisited;
+    }
+
     private Node Expand()
     {
-        //action = possibleActions();
+        //int range = moves.GetRange();
+        //int rnd = UnityEngine.Random.Range(0, range - 1);
+
+        //action = moves;
 
         return null;
     }
+
+    private bool isNodeTerminal()
+    {
+        // check if the current node is terminal
+        return false;
+    }
+
+    private void SimulationRollout()
+    {
+
+    }
+
+    #endregion
 }

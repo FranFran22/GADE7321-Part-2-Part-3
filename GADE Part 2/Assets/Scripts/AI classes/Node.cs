@@ -9,13 +9,15 @@ public class Node : MonoBehaviour
     private int nodeNum;
     private List<Vector2Int> calculatedMoves;
     private Node parentNode;
+    public int timesVisited;
 
 
     public Node(List<Vector2Int> moves, int num, Node parent) 
     {
-        nodeNum = num;
-        calculatedMoves = moves;
-        parentNode = parent;
+        this.nodeNum = num;
+        this.calculatedMoves = moves;
+        this.parentNode = parent;
+        this.timesVisited = 0;
     }
 
 }
