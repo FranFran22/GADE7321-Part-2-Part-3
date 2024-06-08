@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
     private Player goldPlayer;
     private Player greyPlayer;
     private Player activePlayer;
-    private bool victory, goldWin, greyWin, goldCrownExists, greyCrownExists;
+    public bool victory, goldWin, greyWin, goldCrownExists, greyCrownExists;
 
     private void Awake()
     {
