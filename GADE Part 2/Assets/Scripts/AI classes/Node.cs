@@ -50,7 +50,6 @@ public class Node
     #region METHODS
     public static Node MCST(Piece[,] state)
     {
-        //children.Clear();
         Initialize();
 
         Node root = new Node(state, nullVector);
@@ -134,10 +133,11 @@ public class Node
         else return false;
     }
 
+    //STEP 1
     public static Node BestChild()
     {
         int n, q;
-        double c_param = parameter;//0.1; //controls the exploration (term 2)
+        double c_param = parameter; //controls the exploration (term 2)
         List<double> childWeighting = new List<double>();
 
         foreach (Node node in children)
@@ -166,6 +166,7 @@ public class Node
         return children[maxIndex];
     }
 
+    //STEP 2
     private Node Expand(Node current, Piece[,] state)
     {
         action = RolloutPolicy(state);
@@ -236,7 +237,8 @@ public class Node
         return currentNode;
     }
 
-    private int SimulationRollout(Piece[,] state, Node node) //simulates the whole game until there is an outcome
+    //STEP 3
+    private int SimulationRollout(Piece[,] state, Node node)
     {
         Piece[,] currentRolloutState = state; //current game state
         List<Vector2Int> possibleMoves = new List<Vector2Int>();
@@ -270,6 +272,7 @@ public class Node
         return BestChild();
     }
 
+    //STEP 4
     private void Backpropagate(int result, Node currentNode)
     {
         currentNode.numOfVisits++;
