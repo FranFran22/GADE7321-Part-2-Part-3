@@ -184,13 +184,13 @@ public class Node
 
     public Vector2Int RolloutPolicy(Piece[,] state)
     {
-        //pick a random piece on the board
+        //pick a random grey* piece on the board
         int i = UnityEngine.Random.Range(0, 7);
         int j = UnityEngine.Random.Range(0, 7);
 
         chosenPiece = state[i, j];
 
-        while (state[i, j] == null)
+        while (state[i, j] == null && state[i, j].colour == Colour.Grey)
         {
             i = UnityEngine.Random.Range(0, 7);
             j = UnityEngine.Random.Range(0, 7);
