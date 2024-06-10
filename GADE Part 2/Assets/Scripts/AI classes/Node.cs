@@ -16,7 +16,7 @@ public class Node
     private Node parent;
     private Node child;
     public static Node chosenN;
-    public static List<Node> children = new List<Node>();
+    public static List<Node> children;
 
     public Piece chosenPiece;
     public Vector2Int chosenMove;
@@ -50,11 +50,19 @@ public class Node
     #region METHODS
     public static Node MCST(Piece[,] state)
     {
+        //children.Clear();
+        Initialize();
+
         Node root = new Node(state, nullVector);
         chosenN = root.BestAction(root, state);
 
         Debug.Log("main runs");
         return chosenN;
+    }
+
+    private static void Initialize()
+    {
+        children = new List<Node>();
     }
     
     public static List<Vector2Int> UntriedActions(Piece[,] state)
@@ -201,7 +209,7 @@ public class Node
 
         chosenPiece = state[i, j];
 
-        while (chosenPiece == null) //&& chosenPiece.colour != Colour.Grey)
+        while (chosenPiece == null && chosenPiece.colour == Colour.Gold)
         {
             i = UnityEngine.Random.Range(0, 8);
             j = UnityEngine.Random.Range(0, 8);
@@ -246,7 +254,7 @@ public class Node
 
     public Node BestAction(Node node, Piece[,] state)
     {
-        int sim_no = 10;
+        int sim_no = 5;
         int reward;
 
         Node chosenNode = null;
