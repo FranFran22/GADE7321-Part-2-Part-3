@@ -12,7 +12,6 @@ public class Node
     // > code is running weirdly, needs more bugfixing
 
     [SerializeField] private GameController gc;
-    //[SerializeField] private GameObject NodeManager;
 
     private Node parent;
     private Node child;
@@ -28,6 +27,7 @@ public class Node
     public int numOfVisits;
     Dictionary<int, int> results = new Dictionary<int, int>();
     public Vector2Int action;
+    public static double parameter;
 
     public static List<Vector2Int> moves = new List<Vector2Int>();
     public static List<Node> bestNodes = new List<Node>(); //stores the best chosen path
@@ -49,6 +49,7 @@ public class Node
     void Start()
     {
         nullVector = Vector2Int.zero;
+        Debug.Log(parameter);
     }
 
     void Update()
@@ -59,7 +60,8 @@ public class Node
     #region METHODS
     public static Node MCST(Piece[,] state)
     {
-     
+        Debug.Log(parameter);
+
         Node root = new Node(state, nullVector);
         chosenN = root.BestAction(root, state);
 
@@ -139,7 +141,7 @@ public class Node
     public static Node BestChild()
     {
         int n, q;
-        double c_param = 0.1; //controls the exploration (term 2)
+        double c_param = parameter;//0.1; //controls the exploration (term 2)
         List<double> childWeighting = new List<double>();
 
         foreach (Node node in children)
