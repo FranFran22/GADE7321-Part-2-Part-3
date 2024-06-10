@@ -109,7 +109,7 @@ public class GameController : MonoBehaviour
             ChangeActivePlayer();
         }
 
-        else if (scene.name == "Singleplayer")
+        if (scene.name == "Singleplayer (AI)")
         {
             if (activePlayer == goldPlayer)
             {
@@ -121,7 +121,7 @@ public class GameController : MonoBehaviour
 
             if (activePlayer == greyPlayer)
             {
-
+                Debug.Log("MCST about to run");
 
                 nodeChosen = Node.MCST(gameStateGrid);
                 Vector2Int move = nodeChosen.action;
