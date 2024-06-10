@@ -8,7 +8,6 @@ using System;
 public class Node
 {
     //NOTES:
-    // > need to select only the grey pieces dummy
     // > code is running weirdly, needs more bugfixing
 
     [SerializeField] private GameController gc;
