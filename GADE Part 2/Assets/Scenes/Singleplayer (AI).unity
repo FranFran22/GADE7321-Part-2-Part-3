@@ -163,7 +163,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 237242031}
-  - component: {fileID: 237242030}
   m_Layer: 0
   m_Name: Node Manager
   m_TagString: Untagged
@@ -171,24 +170,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &237242030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 237242029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c23ec97ae632b684b828d843a5753847, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gc: {fileID: 1012803298}
-  NodeManager: {fileID: 237242029}
-  chosenPiece: {fileID: 0}
-  chosenMove: {x: 0, y: 0}
-  numOfVisits: 0
-  action: {x: 0, y: 0}
 --- !u!4 &237242031
 Transform:
   m_ObjectHideFlags: 0

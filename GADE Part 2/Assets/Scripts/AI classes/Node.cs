@@ -8,7 +8,6 @@ using System;
 public class Node
 {
     //NOTES:
-    // > need to select only the grey pieces dummy
     // > code is running weirdly, needs more bugfixing
 
     [SerializeField] private GameController gc;
@@ -16,7 +15,7 @@ public class Node
     private Node parent;
     private Node child;
     public static Node chosenN;
-    public static Node[] children;
+    public static List<Node> children;
 
     public Piece chosenPiece;
     public Vector2Int chosenMove;
@@ -46,27 +45,22 @@ public class Node
         results[-1] = 0;
     }
 
-    void Start()
-    {
-        nullVector = Vector2Int.zero;
-        Debug.Log(parameter);
-    }
-
-    void Update()
-    {
-        gameState = Board.grid;
-    }
 
     #region METHODS
     public static Node MCST(Piece[,] state)
     {
-        Debug.Log(parameter);
+        Initialize();
 
         Node root = new Node(state, nullVector);
         chosenN = root.BestAction(root, state);
 
         Debug.Log("main runs");
         return chosenN;
+    }
+
+    private static void Initialize()
+    {
+        children = new List<Node>();
     }
     
     public static List<Vector2Int> UntriedActions(Piece[,] state)
@@ -138,10 +132,11 @@ public class Node
         else return false;
     }
 
+    //STEP 1
     public static Node BestChild()
     {
         int n, q;
-        double c_param = parameter;//0.1; //controls the exploration (term 2)
+        double c_param = parameter; //controls the exploration (term 2)
         List<double> childWeighting = new List<double>();
 
         foreach (Node node in children)
@@ -170,43 +165,31 @@ public class Node
         return children[maxIndex];
     }
 
-    private Node Expand(Node current, Piece[,] state) //FIX!!
+    //STEP 2
+    private Node Expand(Node current, Piece[,] state)
     {
         action = RolloutPolicy(state);
         nextState = Move(action, current);
-
         child = new Node(nextState, action, current);
 
-        children.Append(child); //this is returning a null value ??
+        Debug.Log("child node: " + child);
+
+        children.Add(child);
+
         Debug.Log("Step 2: Expansion completed");
         return child;
     }
 
     public Vector2Int RolloutPolicy(Piece[,] state)
     {
-        //pick a random grey* piece on the board
-        int i = UnityEngine.Random.Range(0, 7);
-        int j = UnityEngine.Random.Range(0, 7);
-
-        chosenPiece = state[i, j];
-
-        while (state[i, j] == null && state[i, j].colour == Colour.Grey)
-        {
-            i = UnityEngine.Random.Range(0, 7);
-            j = UnityEngine.Random.Range(0, 7);
-
-            chosenPiece = state[i, j];
-        }
+        Piece piece = SelectPiece(state);
 
         //calculate its possible moves
-        List<Vector2Int> calculatedMoves = chosenPiece.SelectAvailableSquares();
+        List<Vector2Int> calculatedMoves = piece.SelectAvailableSquares();
 
         while (calculatedMoves.Count < 1)
         {
-            i = UnityEngine.Random.Range(0, 7);
-            j = UnityEngine.Random.Range(0, 7);
-
-            chosenPiece = state[i, j];
+            SelectPiece(state);
             calculatedMoves = chosenPiece.SelectAvailableSquares();
         }
 
@@ -216,6 +199,25 @@ public class Node
         chosenMove = calculatedMoves[x];
 
         return chosenMove;
+    }
+
+    private Piece SelectPiece(Piece[,] state)
+    {
+        //pick a random grey* piece on the board
+        int i = UnityEngine.Random.Range(0, 7);
+        int j = UnityEngine.Random.Range(0, 7);
+
+        chosenPiece = state[i, j];
+
+        while (chosenPiece == null && chosenPiece.colour == Colour.Gold)
+        {
+            i = UnityEngine.Random.Range(0, 8);
+            j = UnityEngine.Random.Range(0, 8);
+
+            chosenPiece = state[i, j];
+        }
+
+        return chosenPiece;
     }
 
     private Node TreePolicy(Node selectedNode, Piece[,] state)
@@ -234,7 +236,8 @@ public class Node
         return currentNode;
     }
 
-    private int SimulationRollout(Piece[,] state, Node node) //simulates the whole game until there is an outcome
+    //STEP 3
+    private int SimulationRollout(Piece[,] state, Node node)
     {
         Piece[,] currentRolloutState = state; //current game state
         List<Vector2Int> possibleMoves = new List<Vector2Int>();
@@ -252,7 +255,7 @@ public class Node
 
     public Node BestAction(Node node, Piece[,] state)
     {
-        int sim_no = 100;
+        int sim_no = 5;
         int reward;
 
         Node chosenNode = null;
@@ -268,6 +271,7 @@ public class Node
         return BestChild();
     }
 
+    //STEP 4
     private void Backpropagate(int result, Node currentNode)
     {
         currentNode.numOfVisits++;

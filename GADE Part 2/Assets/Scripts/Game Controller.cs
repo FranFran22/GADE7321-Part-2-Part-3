@@ -23,7 +23,6 @@ public class GameController : MonoBehaviour
     public Player activePlayer;
     public bool victory, goldWin, greyWin, goldCrownExists, greyCrownExists;
 
-    private Vector2Int chosenMove;
     private Node nodeChosen;
     private Piece[,] gameStateGrid;
 
@@ -102,6 +101,7 @@ public class GameController : MonoBehaviour
     {
         Scene scene = SceneManager.GetActiveScene();
 
+        //runs when the multiplayer scene is active (player vs player)
         if (scene.name == "Multiplayer")
         {
             GeneratePlayerMoves(activePlayer);
@@ -109,7 +109,8 @@ public class GameController : MonoBehaviour
             ChangeActivePlayer();
         }
 
-        else if (scene.name == "Singleplayer")
+        //runs when the singleplayer scene is active (player vs AI)
+        if (scene.name == "Singleplayer (AI)")
         {
             if (activePlayer == goldPlayer)
             {
@@ -121,7 +122,7 @@ public class GameController : MonoBehaviour
 
             if (activePlayer == greyPlayer)
             {
-
+                Debug.Log("MCST about to run");
 
                 nodeChosen = Node.MCST(gameStateGrid);
                 Vector2Int move = nodeChosen.action;
