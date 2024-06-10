@@ -44,8 +44,11 @@ public class Mercenary : Piece
             }
         }
 
-        Debug.Log("merc moves calculated");
-
         return availableMoves;
+    }
+
+    public override void DestroyObj()
+    {
+        Destroy(gameObject);
     }
 }

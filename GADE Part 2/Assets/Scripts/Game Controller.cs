@@ -4,18 +4,27 @@ using UnityEditor;
 using UnityEngine;
 using System;
 using UnityEngine.UIElements;
+using TMPro;
 
 
-//[RequiresComponent(typeof(PieceCreator))]
 public class GameController : MonoBehaviour
 {
     [SerializeField] private BoardLayout startingLayout1;
     [SerializeField] private Board board;
+    [SerializeField] private Material gold;
+    [SerializeField] private Material grey;
+    [SerializeField] private TMP_Text victoryText;
+    [SerializeField] private GameObject victoryCanvas;
 
     private PieceCreator pieceCreator;
-    private Player goldPlayer;
-    private Player greyPlayer;
-    private Player activePlayer;
+    public Player goldPlayer;
+    public Player greyPlayer;
+    public Player activePlayer;
+    public bool victory, goldWin, greyWin, goldCrownExists, greyCrownExists;
+
+    private Vector2Int chosenMove;
+    private Node nodeChosen;
+    private Piece[,] gameStateGrid;
 
     private void Awake()
     {
@@ -28,10 +37,13 @@ public class GameController : MonoBehaviour
         StartGame();
     }
 
-
     void Update()
     {
-        
+        CheckForCrowns();
+        WinConditions();
+        Victory();
+
+        gameStateGrid = Board.grid;
     }
 
     private void StartGame()
@@ -87,9 +99,27 @@ public class GameController : MonoBehaviour
 
     public void EndTurn()
     {
-        GeneratePlayerMoves(activePlayer);
-        GeneratePlayerMoves(GetOpponentToPlayer(activePlayer));
-        ChangeActivePlayer();
+        if (activePlayer == goldPlayer)
+        {
+            GeneratePlayerMoves(activePlayer);
+            ChangeActivePlayer();
+
+            Debug.Log("changed to grey player");
+        }
+        
+        if (activePlayer == greyPlayer)
+        {
+            
+
+            nodeChosen = Node.MCST(gameStateGrid);
+            Vector2Int move = nodeChosen.action;
+
+            board.OnAIMove(move, nodeChosen.chosenPiece);
+
+            ChangeActivePlayer();
+
+            Debug.Log("changed to gold player");
+        }
     }
 
     private void ChangeActivePlayer()
@@ -100,5 +130,49 @@ public class GameController : MonoBehaviour
     private Player GetOpponentToPlayer(Player player)
     {
         return player == goldPlayer ? greyPlayer : goldPlayer;
+    }
+
+    public void WinConditions() 
+    {
+        //check if crowns are still on board
+        if (goldCrownExists == false)
+            greyWin = true;
+
+        if (greyCrownExists == false)
+            goldWin = true;
+    }
+
+    public void CheckForCrowns()
+    {
+        GameObject[] crowns = GameObject.FindGameObjectsWithTag("Crown");
+
+        foreach (GameObject obj in crowns)
+        {
+            if (obj.GetComponent<Renderer>().material.name == "Gold (Instance)")
+                goldCrownExists = true;
+
+            if (obj.GetComponent<Renderer>().material.name == "Grey (Instance)")
+                greyCrownExists = true;
+        }
+
+        //Debug.Log("grey: " + greyCrownExists);
+        //Debug.Log("gold: " + goldCrownExists);
+    }
+
+    private void Victory()
+    {
+        if (goldWin == true)
+        {
+            victoryCanvas.SetActive(true);
+            victoryText.text = "Gold wins";
+        }
+
+        if (greyWin == true)
+        {
+            victoryCanvas.SetActive(true);
+            victoryText.text = "Grey wins";
+        }
+
+        else victoryCanvas.SetActive(false);
     }
 }

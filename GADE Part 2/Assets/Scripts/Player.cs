@@ -33,7 +33,7 @@ public class Player
     {
         foreach (var piece in activePieces)
         {
-            if (board.HasPiece(piece))
+            if (Board.HasPiece(piece))
                 piece.SelectAvailableSquares();
         }
     }

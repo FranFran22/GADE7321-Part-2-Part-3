@@ -47,4 +47,10 @@ public class Guard : Piece
            
         return availableMoves;
     }
+
+    public override void DestroyObj()
+    {
+        Destroy(gameObject);
+    }
+
 }
