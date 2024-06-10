@@ -5,6 +5,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UIElements;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 public class GameController : MonoBehaviour
@@ -99,27 +100,40 @@ public class GameController : MonoBehaviour
 
     public void EndTurn()
     {
-        if (activePlayer == goldPlayer)
+        Scene scene = SceneManager.GetActiveScene();
+
+        if (scene.name == "Multiplayer")
         {
             GeneratePlayerMoves(activePlayer);
+            GeneratePlayerMoves(GetOpponentToPlayer(activePlayer));
             ChangeActivePlayer();
-
-            Debug.Log("changed to grey player");
         }
-        
-        if (activePlayer == greyPlayer)
+
+        else if (scene.name == "Singleplayer")
         {
-            
+            if (activePlayer == goldPlayer)
+            {
+                GeneratePlayerMoves(activePlayer);
+                ChangeActivePlayer();
 
-            nodeChosen = Node.MCST(gameStateGrid);
-            Vector2Int move = nodeChosen.action;
+                Debug.Log("changed to grey player");
+            }
 
-            board.OnAIMove(move, nodeChosen.chosenPiece);
+            if (activePlayer == greyPlayer)
+            {
 
-            ChangeActivePlayer();
 
-            Debug.Log("changed to gold player");
+                nodeChosen = Node.MCST(gameStateGrid);
+                Vector2Int move = nodeChosen.action;
+
+                board.OnAIMove(move, nodeChosen.chosenPiece);
+
+                ChangeActivePlayer();
+
+                Debug.Log("changed to gold player");
+            }
         }
+            
     }
 
     private void ChangeActivePlayer()
