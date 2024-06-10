@@ -5,41 +5,50 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System;
 
-public class Node : MonoBehaviour
+public class Node
 {
+    //NOTES:
+    // > need to select only the grey pieces dummy
+    // > code is running weirdly, needs more bugfixing
+
+    [SerializeField] private GameController gc;
+    //[SerializeField] private GameObject NodeManager;
+
     private Node parent;
     private Node child;
+    public static Node chosenN;
     public static Node[] children;
+
+    public Piece chosenPiece;
+    public Vector2Int chosenMove;
+    public static Vector2Int nullVector;
 
     public Piece[,] gameState;
     public Piece[,] nextState;
     public int numOfVisits;
     Dictionary<int, int> results = new Dictionary<int, int>();
-    private Vector2Int action;
+    public Vector2Int action;
 
-    private List<Vector2Int> untriedMoves = new List<Vector2Int>();
-    public List<Vector2Int> moves = new List<Vector2Int>();
-
-    private GameController gc;
+    public static List<Vector2Int> moves = new List<Vector2Int>();
+    public static List<Node> bestNodes = new List<Node>(); //stores the best chosen path
 
 
-    public Node(Vector2Int parentAction, Node parentN, Piece[,] state) 
+    public Node(Piece[,] state, Vector2Int parentAction, Node parentN = null, Piece piece = null) 
     {
         this.gameState = state; //game state
         this.parent = parentN; //parent node
         this.action = parentAction; //action that took place in the parent node
-        this.moves = UntriedActions(state); //possible actions from current node
+        this.chosenPiece = piece;
+        moves = UntriedActions(state); //possible actions from current node
         this.numOfVisits = 0;
 
         results[1] = 0;
         results[-1] = 0;
-
-        this.untriedMoves = UntriedActions(state); //possible moves not yet perfomed
     }
 
     void Start()
     {
-        gc = GetComponent<GameController>();
+        nullVector = Vector2Int.zero;
     }
 
     void Update()
@@ -48,12 +57,19 @@ public class Node : MonoBehaviour
     }
 
     #region METHODS
+    public static Node MCST(Piece[,] state)
+    {
+     
+        Node root = new Node(state, nullVector);
+        chosenN = root.BestAction(root, state);
+
+        Debug.Log("main runs");
+        return chosenN;
+    }
+    
     public static List<Vector2Int> UntriedActions(Piece[,] state)
-    { 
-        List<Vector2Int> actions = new List<Vector2Int>();
-
-        actions = possibleActions(state);
-
+    {
+        List<Vector2Int> actions = possibleActions(state);
         return actions;
     }
 
@@ -61,7 +77,8 @@ public class Node : MonoBehaviour
     {
         foreach (Piece p in state)
         {
-            if (Board.HasPiece(p))
+
+            if (p != null)
             {
                 List<Vector2Int> temp = p.SelectAvailableSquares();
                 moves.AddRange(temp);
@@ -91,7 +108,7 @@ public class Node : MonoBehaviour
 
         foreach (Piece piece in state)
         {
-            if (Board.HasPiece(piece))
+            if (piece != null)
             {
                 List<Vector2Int> temp = piece.SelectAvailableSquares();
 
@@ -119,7 +136,7 @@ public class Node : MonoBehaviour
         else return false;
     }
 
-    public static Node BestChild(Node child)
+    public static Node BestChild()
     {
         int n, q;
         double c_param = 0.1; //controls the exploration (term 2)
@@ -147,17 +164,19 @@ public class Node : MonoBehaviour
             }
         }
 
+        Debug.Log("Step 1: Selection completed");
         return children[maxIndex];
     }
 
-    private Node Expand(Node current, Piece[,] state)
+    private Node Expand(Node current, Piece[,] state) //FIX!!
     {
         action = RolloutPolicy(state);
-        nextState = Move(state, action);
+        nextState = Move(action, current);
 
-        child = new Node(action, current, nextState);
+        child = new Node(nextState, action, current);
 
-        children.Append(child);
+        children.Append(child); //this is returning a null value ??
+        Debug.Log("Step 2: Expansion completed");
         return child;
     }
 
@@ -167,23 +186,34 @@ public class Node : MonoBehaviour
         int i = UnityEngine.Random.Range(0, 7);
         int j = UnityEngine.Random.Range(0, 7);
 
-        Piece randomPiece = state[i, j];
+        chosenPiece = state[i, j];
 
         while (state[i, j] == null)
         {
             i = UnityEngine.Random.Range(0, 7);
             j = UnityEngine.Random.Range(0, 7);
 
-            randomPiece = state[i, j];
+            chosenPiece = state[i, j];
         }
 
         //calculate its possible moves
-        List<Vector2Int> calculatedMoves = randomPiece.SelectAvailableSquares();
+        List<Vector2Int> calculatedMoves = chosenPiece.SelectAvailableSquares();
 
-        int x = UnityEngine.Random.Range(0, calculatedMoves.Count - 1);
-        Vector2Int newAction = calculatedMoves[x];
+        while (calculatedMoves.Count < 1)
+        {
+            i = UnityEngine.Random.Range(0, 7);
+            j = UnityEngine.Random.Range(0, 7);
 
-        return newAction;
+            chosenPiece = state[i, j];
+            calculatedMoves = chosenPiece.SelectAvailableSquares();
+        }
+
+        Debug.Log(calculatedMoves.Count);
+
+        int x = UnityEngine.Random.Range(0, calculatedMoves.Count-1);
+        chosenMove = calculatedMoves[x];
+
+        return chosenMove;
     }
 
     private Node TreePolicy(Node selectedNode, Piece[,] state)
@@ -196,13 +226,13 @@ public class Node : MonoBehaviour
             if (!IsFullyExpanded(selectedNode))
                 return Expand(currentNode, state);
             else
-                currentNode = BestChild(selectedNode);
+                currentNode = BestChild();
         }
 
         return currentNode;
     }
 
-    private int SimulationRollout(Piece[,] state) //simulates the whole game until there is an outcome
+    private int SimulationRollout(Piece[,] state, Node node) //simulates the whole game until there is an outcome
     {
         Piece[,] currentRolloutState = state; //current game state
         List<Vector2Int> possibleMoves = new List<Vector2Int>();
@@ -211,9 +241,10 @@ public class Node : MonoBehaviour
         {
             possibleMoves = UntriedActions(currentRolloutState);
             action = RolloutPolicy(state);
-            currentRolloutState = Move(action); 
+            currentRolloutState = Move(action, node); 
         }
 
+        Debug.Log("Step 3: Simulation completed");
         return GameResult();
     }
 
@@ -227,11 +258,12 @@ public class Node : MonoBehaviour
         for (int i = 0; i < sim_no; i++)
         {
             chosenNode = TreePolicy(node, state);
-            reward = SimulationRollout(state);
+            reward = SimulationRollout(state, node);
             Backpropagate(reward, node);
         }
 
-        return BestChild(chosenNode);
+        Debug.Log("best action runs");
+        return BestChild();
     }
 
     private void Backpropagate(int result, Node currentNode)
@@ -243,6 +275,8 @@ public class Node : MonoBehaviour
         {
             Backpropagate(result, currentNode.parent);
         }
+
+        Debug.Log("Step 4: Backpropagation completed");
     }
 
     private int GameResult()
@@ -263,9 +297,13 @@ public class Node : MonoBehaviour
         return result;
     }
 
-    private Piece[,] Move(Piece[,] state, Vector2Int move) //UNFINISHED
+    private Piece[,] Move(Vector2Int move, Node current)
     {
-        return null;
+        Board.UpdateBoardOnMove(move, chosenPiece.occupiedSquare, chosenPiece, null);
+        chosenPiece.MovePiece(move);
+        current.chosenPiece = chosenPiece;
+
+        return Board.grid;
     }
     #endregion
 }

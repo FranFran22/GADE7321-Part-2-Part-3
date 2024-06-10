@@ -11,11 +11,11 @@ public class Board : MonoBehaviour
     [SerializeField] private float squareSize;
     [SerializeField] private Colour pColour;
     [SerializeField] private Piece target;
+    [SerializeField] private GameController controller;
 
     public static Piece[,] grid;
     public Piece selectedPiece;
     public const int BOARD_SIZE = 8;
-    private GameController controller;
     private SquareSelectorCreator squareSelector;
     private bool targetExists;
 
@@ -30,7 +30,7 @@ public class Board : MonoBehaviour
 #region METHODS
     public void SetDependancies(GameController controller)
     {
-        this.controller = controller;
+        //this.controller = controller;
     }
 
     public Vector3 CalculatePosition(Vector2Int coords)
@@ -80,23 +80,35 @@ public class Board : MonoBehaviour
         }
     }
 
-    private void OnSelectedPieceMoved(Vector2Int coords, Piece piece)
+    public void OnSelectedPieceMoved(Vector2Int coords, Piece piece)
     {
         UpdateBoardOnMove(coords, piece.occupiedSquare, piece, null);
         selectedPiece.MovePiece(coords);
 
-        Debug.Log("Piece moved, square occuppied");
+        Debug.Log("Piece moved, square occupied");
 
         if (BoardCheck(coords) == true)
         {
             Capture();
             Debug.Log("Piece captured");
         }
-
-        controller.WinConditions();
              
         DeselectPiece();
         EndTurn();
+    }
+
+    public void OnAIMove(Vector2Int coords, Piece piece)
+    {
+        UpdateBoardOnMove(coords, piece.occupiedSquare, piece, null);
+        selectedPiece.MovePiece(coords);
+
+        Debug.Log("Piece moved, square occupied");
+
+        if (BoardCheck(coords) == true)
+        {
+            Capture();
+            Debug.Log("Piece captured");
+        }
     }
 
     private void EndTurn()
@@ -104,7 +116,7 @@ public class Board : MonoBehaviour
         controller.EndTurn();
     }
 
-    private void UpdateBoardOnMove(Vector2Int newCoords, Vector2Int oldCoords, Piece newPiece, Piece oldPiece)
+    public static void UpdateBoardOnMove(Vector2Int newCoords, Vector2Int oldCoords, Piece newPiece, Piece oldPiece)
     {
         grid[oldCoords.x, oldCoords.y] = oldPiece;
         grid[newCoords.x, newCoords.y] = newPiece;
@@ -185,9 +197,7 @@ public class Board : MonoBehaviour
 
         //coordinate conversions
         Piece goldTarget1 = grid[ConvertCoords(coords.x), ConvertCoords(coords.y - 1)]; 
-        Piece goldTarget2 = grid[ConvertCoords(coords.x + 1), ConvertCoords(coords.y)];
         Piece greyTarget1 = grid[ConvertCoords(coords.x), ConvertCoords(coords.y + 1)];
-        Piece greyTarget2 = grid[ConvertCoords(coords.x - 1), ConvertCoords(coords.y)];
 
         switch (pColour)
         {
@@ -198,13 +208,7 @@ public class Board : MonoBehaviour
                     target = goldTarget1;
                 }
 
-                if (goldTarget2 != null)
-                {
-                    targetExists = true;
-                    target = goldTarget2;
-                }
-
-                else if (goldTarget1 == null && goldTarget2 == null)
+                else if (goldTarget1 == null)
                     targetExists = false;
 
                 break;
@@ -216,13 +220,7 @@ public class Board : MonoBehaviour
                     target = greyTarget1;
                 }
 
-                if (greyTarget2 != null)
-                {
-                    targetExists = true;
-                    target = greyTarget2;
-                }
-
-                else if (greyTarget1 == null && greyTarget2 == null)
+                else if (greyTarget1 == null)
                     targetExists = false;
 
                 break;
@@ -236,6 +234,16 @@ public class Board : MonoBehaviour
     {
         if (grid[target.occupiedSquare.x, target.occupiedSquare.y].colour != pColour)
         {
+            if (grid[target.occupiedSquare.x, target.occupiedSquare.y].name == "Crown(Clone)" && controller.activePlayer == controller.goldPlayer)
+            {
+                controller.greyCrownExists = false;
+            }
+
+            if (grid[target.occupiedSquare.x, target.occupiedSquare.y].name == "Crown(Clone)" && controller.activePlayer == controller.greyPlayer)
+            {
+                controller.goldCrownExists = false;
+            }
+
             grid[target.occupiedSquare.x, target.occupiedSquare.y] = null;
             target.DestroyObj();
             Debug.Log("Piece destroyed");
