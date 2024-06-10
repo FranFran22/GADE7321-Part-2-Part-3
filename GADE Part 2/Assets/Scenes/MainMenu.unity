@@ -405,6 +405,7 @@ GameObject:
   - component: {fileID: 137518386}
   - component: {fileID: 137518385}
   - component: {fileID: 137518384}
+  - component: {fileID: 137518387}
   - component: {fileID: 137518383}
   m_Layer: 5
   m_Name: hard
@@ -446,7 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5be248d35f0df343b8ea76c3d4213a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: 1
+  scene: 2
 --- !u!114 &137518384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,6 +504,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 137518387}
+        m_TargetAssemblyTypeName: DifficultySetter, Assembly-CSharp
+        m_MethodName: SetDifficultyParameter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &137518385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,6 +554,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137518381}
   m_CullTransparentMesh: 1
+--- !u!114 &137518387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137518381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5edf1ecb041c99d44b4062f781e014eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  param: 0.5
 --- !u!1 &213477466
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,7 +693,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: EASY
+  m_text: DIFFICULTY 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -757,6 +783,7 @@ GameObject:
   - component: {fileID: 343473799}
   - component: {fileID: 343473798}
   - component: {fileID: 343473797}
+  - component: {fileID: 343473801}
   m_Layer: 5
   m_Name: easy
   m_TagString: Untagged
@@ -797,7 +824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5be248d35f0df343b8ea76c3d4213a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: 1
+  scene: 2
 --- !u!114 &343473798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -854,6 +881,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 343473801}
+        m_TargetAssemblyTypeName: DifficultySetter, Assembly-CSharp
+        m_MethodName: SetDifficultyParameter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &343473799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,6 +931,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343473795}
   m_CullTransparentMesh: 1
+--- !u!114 &343473801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343473795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5edf1ecb041c99d44b4062f781e014eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  param: 0.1
 --- !u!1 &344132155
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,7 +1231,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: INTERMEDIATE
+  m_text: DIFFICULTY 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1778,7 +1830,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: HARD
+  m_text: DIFFICULTY 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2225,6 +2277,7 @@ GameObject:
   - component: {fileID: 1808573513}
   - component: {fileID: 1808573512}
   - component: {fileID: 1808573511}
+  - component: {fileID: 1808573514}
   - component: {fileID: 1808573510}
   m_Layer: 5
   m_Name: intermediate
@@ -2266,7 +2319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5be248d35f0df343b8ea76c3d4213a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: 1
+  scene: 2
 --- !u!114 &1808573511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2323,6 +2376,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1808573514}
+        m_TargetAssemblyTypeName: DifficultySetter, Assembly-CSharp
+        m_MethodName: SetDifficultyParameter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1808573512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2361,6 +2426,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1808573508}
   m_CullTransparentMesh: 1
+--- !u!114 &1808573514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808573508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5edf1ecb041c99d44b4062f781e014eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  param: 0.3
 --- !u!1 &1849712691
 GameObject:
   m_ObjectHideFlags: 0
